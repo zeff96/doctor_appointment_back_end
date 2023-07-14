@@ -22,6 +22,12 @@ class DoctorsController < ApplicationController
       render json: {error: @doctor.errors.full_messages}, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    @doctor.destroy
+
+    head :no_content
+  end
   
   private
 
