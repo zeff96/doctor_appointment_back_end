@@ -48,3 +48,5 @@ end
 gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'active_model_serializers', '~> 0.10.0'
+
+gem 'rack-cors'
