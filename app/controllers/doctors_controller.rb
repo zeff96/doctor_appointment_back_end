@@ -15,6 +15,7 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.new
     @doctor.build_social_media
     @doctor.build_location
+    @doctor.build_payment
   end
 
   def create
@@ -40,6 +41,6 @@ class DoctorsController < ApplicationController
   end
 
   def doctor_params
-    params.require(:doctor).permit(:name, :bio, :image, location_attributes: [:address, :city, :state, :zip_code], social_media_attributes: [:facebook, :twitter, :instagram]) 
+    params.require(:doctor).permit(:name, :bio, :image, location_attributes: [:address, :city, :state, :zip_code], social_media_attributes: [:facebook, :twitter, :instagram], payment_attributes: [:consultation_fee]) 
   end
 end
