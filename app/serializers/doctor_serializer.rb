@@ -1,7 +1,7 @@
 class DoctorSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :name, :bio, :image_url, :social_media, :location
+  attributes :id, :name, :bio, :image_url, :social_media, :location, :payment
 
   def image_url
     if object.image.attached?
@@ -23,6 +23,12 @@ class DoctorSerializer < ActiveModel::Serializer
       city: object.location.city,
       state: object.location.state,
       zip_code: object.location.zip_code
+    }
+  end
+
+  def payment
+    {
+      amount: object.payment.consultation_fee
     }
   end
 end
