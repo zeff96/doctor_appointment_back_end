@@ -16,6 +16,10 @@ doctor.build_location(
   zip_code: 12345
 )
 
+doctor.build_payment(
+  consultation_fee: 150
+)
+
 doctor.image.attach(io: File.open('public/images/jeremy-alford.jpg'), filename: 'jeremy-alford.jpg')
 
 doctor.save!
@@ -38,6 +42,10 @@ doctor1.build_location(
   zip_code: 56789
 )
 
+doctor1.build_payment(
+  consultation_fee: 250
+)
+
 doctor1.image.attach(io: File.open('public/images/usman-yousaf.jpg'), filename: 'usman-yousaf.jpg')
 
 doctor1.save!
@@ -58,6 +66,10 @@ doctor2.build_location(
   city: 'New York',
   state: 'State',
   zip_code: 33333
+)
+
+doctor2.build_payment(
+  consultation_fee: 100
 )
 
 doctor2.image.attach(io: File.open('public/images/ani-kolleshi.jpg'), filename: 'ani-kolleshi.jpg')
