@@ -41,3 +41,25 @@ doctor1.build_location(
 doctor1.image.attach(io: File.open('public/images/usman-yousaf.jpg'), filename: 'usman-yousaf.jpg')
 
 doctor1.save!
+
+doctor2 = Doctor.new(
+  name: 'Dr. Ani Kolleshi',
+  bio: 'Experienced Psychiatry doctor with abundance of experience'
+)
+
+doctor2.build_social_medium(
+  facebook: 'https://facebook.com/doctorspage',
+  twitter: 'https://twitter.com/doctorspage',
+  instagram: 'https://instagram.com/doctorspage'
+)
+
+doctor2.build_location(
+  address: '4653 Main Street',
+  city: 'New York',
+  state: 'State',
+  zip_code: 33333
+)
+
+doctor2.image.attach(io: File.open('public/images/ani-kolleshi.jpg'), filename: 'ani-kolleshi.jpg')
+
+doctor2.save!
