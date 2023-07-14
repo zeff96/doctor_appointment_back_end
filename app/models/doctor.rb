@@ -1,4 +1,5 @@
 class Doctor < ApplicationRecord
+  belongs_to :user
   has_one :social_medium
   has_one :location
   has_one :payment
