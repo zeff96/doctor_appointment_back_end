@@ -40,6 +40,6 @@ class DoctorsController < ApplicationController
   end
 
   def doctor_params
-    params.require(:doctor).permit(:name, :bio, social_media_attributes: [:platform, :profile_url], :image, location_attributes: [:address, :city, :state, :zip_code])  
+    params.require(:doctor).permit(:name, :bio, :image, location_attributes: [:address, :city, :state, :zip_code], social_media_attributes: [:facebook, :twitter, :instagram]) 
   end
 end

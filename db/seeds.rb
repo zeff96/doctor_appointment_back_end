@@ -1,7 +1,43 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+doctor = Doctor.new(
+  name: 'Dr. Jeremy Alford',
+  bio: 'Experienced doctor specializing in internal medicine'
+)
+
+doctor.build_social_medium(
+  facebook: 'https://facebook.com/doctorspage',
+  twitter: 'https://twitter.com/doctorspage',
+  instagram: 'https://instagram.com/doctorspage'
+)
+
+doctor.build_location(
+  address: '123 Main Street',
+  city: 'Cityville',
+  state: 'State',
+  zip_code: 12345
+)
+
+doctor.image.attach(io: File.open('public/images/jeremy-alford.jpg'), filename: 'jeremy-alford.jpg')
+
+doctor.save!
+
+doctor1 = Doctor.new(
+  name: 'Dr. Usman Yousaf',
+  bio: 'Experienced doctor specializing in human anatomy'
+)
+
+doctor1.build_social_medium(
+  facebook: 'https://facebook.com/doctorspage',
+  twitter: 'https://twitter.com/doctorspage',
+  instagram: 'https://instagram.com/doctorspage'
+)
+
+doctor1.build_location(
+  address: '1333 Main Street',
+  city: 'San Fransisco',
+  state: 'State',
+  zip_code: 56789
+)
+
+doctor1.image.attach(io: File.open('public/images/usman-yousaf.jpg'), filename: 'usman-yousaf.jpg')
+
+doctor1.save!

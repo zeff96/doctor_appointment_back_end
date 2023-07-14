@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_14_050854) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_14_054600) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,11 +61,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_050854) do
   end
 
   create_table "social_media", force: :cascade do |t|
-    t.string "platform"
-    t.string "profile_url"
+    t.string "facebook"
+    t.string "twitter"
     t.bigint "doctor_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "instagram"
     t.index ["doctor_id"], name: "index_social_media_on_doctor_id"
   end
 
