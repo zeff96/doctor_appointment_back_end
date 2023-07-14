@@ -7,7 +7,9 @@ class DoctorsController < ApplicationController
     render json: @doctors, each_serializer: DoctorSerializer
   end
 
-  def show; end
+  def show
+    render json: @doctor
+  end
 
   def new
     @doctor = Doctor.new
