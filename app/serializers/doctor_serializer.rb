@@ -4,9 +4,9 @@ class DoctorSerializer < ActiveModel::Serializer
   attributes :id, :name, :bio, :image_url, :social_media, :location, :payment
 
   def image_url
-    if object.image.attached?
-      url_for(object.image)
-    end
+    return unless object.image.attached?
+
+    url_for(object.image)
   end
 
   def social_media

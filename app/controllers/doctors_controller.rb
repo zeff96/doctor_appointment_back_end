@@ -24,7 +24,7 @@ class DoctorsController < ApplicationController
     if @doctor.save
       render :show, status: :created, location: @doctor
     else
-      render json: {error: @doctor.errors.full_messages}, status: :unprocessable_entity
+      render json: { error: @doctor.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -33,7 +33,7 @@ class DoctorsController < ApplicationController
 
     head :no_content
   end
-  
+
   private
 
   def set_doctor
@@ -41,6 +41,7 @@ class DoctorsController < ApplicationController
   end
 
   def doctor_params
-    params.require(:doctor).permit(:name, :bio, :image, location_attributes: [:address, :city, :state, :zip_code], social_media_attributes: [:facebook, :twitter, :instagram], payment_attributes: [:consultation_fee]) 
+    params.require(:doctor).permit(:name, :bio, :image, location_attributes: %i[address city state zip_code],
+                                                        social_media_attributes: %i[facebook twitter instagram], payment_attributes: [:consultation_fee])
   end
 end
