@@ -2,7 +2,7 @@ class DoctorsController < ApplicationController
   before_action :set_doctor, only: %i[show destroy]
 
   def index
-    @doctors = Doctor.all
+    @doctors = current_user.doctors
 
     render json: @doctors, each_serializer: DoctorSerializer
   end
@@ -12,7 +12,8 @@ class DoctorsController < ApplicationController
   end
 
   def new
-    @doctor = current_user.build_doctor
+    @doctor = Doctor.new
+    @doctor.user = current_user
     @doctor.build_social_media
     @doctor.build_location
     @doctor.build_payment

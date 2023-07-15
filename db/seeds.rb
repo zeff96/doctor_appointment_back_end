@@ -1,6 +1,14 @@
+user = User.find_or_initialize_by(email: 'test@test.com')
+
+if user.new_record?
+  user.password = 'password'
+  user.save
+end
+
 doctor = Doctor.new(
   name: 'Dr. Jeremy Alford',
-  bio: 'Experienced doctor specializing in internal medicine'
+  bio: 'Experienced doctor specializing in internal medicine',
+  user: user
 )
 
 doctor.build_social_medium(
@@ -26,7 +34,8 @@ doctor.save!
 
 doctor1 = Doctor.new(
   name: 'Dr. Usman Yousaf',
-  bio: 'Experienced doctor specializing in human anatomy'
+  bio: 'Experienced doctor specializing in human anatomy',
+  user: user
 )
 
 doctor1.build_social_medium(
@@ -52,7 +61,8 @@ doctor1.save!
 
 doctor2 = Doctor.new(
   name: 'Dr. Ani Kolleshi',
-  bio: 'Experienced Psychiatry doctor with abundance of experience'
+  bio: 'Experienced Psychiatry doctor with abundance of experience',
+  user: user
 )
 
 doctor2.build_social_medium(
