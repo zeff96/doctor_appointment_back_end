@@ -85,3 +85,11 @@ doctor2.build_payment(
 doctor2.image.attach(io: File.open('public/images/ani-kolleshi.jpg'), filename: 'ani-kolleshi.jpg')
 
 doctor2.save!
+
+appointment = Appointment.new(
+  date: Date.today,
+  doctor: doctor,
+  user: user
+)
+
+appointment.save!
