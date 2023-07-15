@@ -12,14 +12,14 @@ class DoctorsController < ApplicationController
   end
 
   def new
-    @doctor = Doctor.new
+    @doctor = current_user.build_doctor
     @doctor.build_social_media
     @doctor.build_location
     @doctor.build_payment
   end
 
   def create
-    @doctor = Doctor.new(doctor_params)
+    @doctor = current_user.build_doctor(doctor_params)
 
     if @doctor.save
       render :show, status: :created, location: @doctor
