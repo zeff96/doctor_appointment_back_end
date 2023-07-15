@@ -2,7 +2,8 @@ class AppointmentsController < ApplicationController
   before_action :set_doctor, only: %i[new create index]
 
   def index
-    @doctor.appointments
+    @ppointment = @doctor.appointments
+    render jsons: @appointments, each_serializer: AppointmentSerializer
   end
 
   def new
