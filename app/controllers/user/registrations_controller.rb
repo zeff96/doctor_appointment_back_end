@@ -1,4 +1,5 @@
 class User::RegistrationsController < Devise::RegistrationsController
+  respond_with :json
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -57,4 +58,40 @@ class User::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def respond_with(resource, _opts = {})
+    render json: {
+      status: {
+        code: 200,
+        message: 'Signed up successfully.'
+      },
+      data: UserSerializer.new(resource).serializable_hash[:data][:attributes],
+      token: generate_token(resource)
+    }
+  end
+
+  def respond_to_on_destroy
+    render json: {
+      status: {
+        code: 200,
+        message: 'Signed out successfully.'
+      },
+      data: {}
+    }
+  end
+
+  private
+
+  def generate_token(resource)
+    payload = {
+      user_id: resource.id
+    }
+    secret_key = Rails.application.secrets.secret_key_base
+
+    token = JWT.encode(payload, secret_key)
+
+    resource.update(token:)
+
+    token
+  end
 end

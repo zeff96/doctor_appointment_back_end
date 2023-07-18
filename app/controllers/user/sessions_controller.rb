@@ -52,6 +52,6 @@ class User::SessionsController < Devise::SessionsController
           code: 401,
           message: 'Not signed in'
         }
-      }
+      }, status: :unauthorized
   end
 end
