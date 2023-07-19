@@ -9,4 +9,8 @@ class Doctor < ApplicationRecord
   accepts_nested_attributes_for :social_medium
   accepts_nested_attributes_for :location
   accepts_nested_attributes_for :payment
+
+  validates :name, presence: true
+  validates :bio, presence: true
+  validates :image, presence: true
 end
