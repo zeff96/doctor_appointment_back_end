@@ -100,6 +100,7 @@ GEM
       reline (>= 0.3.6)
     json (2.6.3)
     jsonapi-renderer (0.2.2)
+    jwt (2.7.1)
     language_server-protocol (3.17.0.3)
     loofah (2.21.3)
       crass (~> 1.0.2)
@@ -214,6 +215,7 @@ DEPENDENCIES
   bootsnap
   debug
   devise (~> 4.9)
+  jwt
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
@@ -222,7 +224,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.0.0p0
 
 BUNDLED WITH
    2.4.12
