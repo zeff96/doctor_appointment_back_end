@@ -8,6 +8,7 @@ RSpec.describe Appointment, type: :model do
     doctor = Doctor.new(
       name: 'doc1',
       bio: 'doc from kenya',
+      location: Location.new(address: '123 Main St', city: 'New York', state: 'NY', zip_code: '10001'),
       user:
     )
     doctor.image.attach(io: image_file, filename: 'ani-kolleshi.jpg', content_type: 'image/jpeg')
@@ -25,6 +26,10 @@ RSpec.describe Appointment, type: :model do
 
     it 'should be valid' do
       expect(@appointment).to be_valid
+    end
+
+    it 'returns doctors city' do
+      expect(@appointment.city).to eq doctor_with_image.location.city
     end
   end
 
