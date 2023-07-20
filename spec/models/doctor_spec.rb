@@ -67,4 +67,11 @@ RSpec.describe Doctor, type: :model do
       expect(association.macro).to eq :has_one
     end
   end
+
+  describe 'Nested attributes' do
+    it 'accepts nested attributes for social media' do
+      association = described_class.reflect_on_association(:social_medium)
+      expect(association.options[:autosave]).to be(true)
+    end
+  end
 end
