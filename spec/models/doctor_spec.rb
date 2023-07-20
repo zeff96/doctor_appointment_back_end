@@ -51,5 +51,10 @@ RSpec.describe Doctor, type: :model do
       association = described_class.reflect_on_association(:appointments)
       expect(association.macro).to eq :has_many
     end
+
+    it 'has one social media' do
+      association = described_class.reflect_on_association(:social_medium)
+      expect(association.macro).to eq :has_one
+    end
   end
 end
