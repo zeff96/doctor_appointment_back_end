@@ -33,6 +33,11 @@ RSpec.describe 'Doctor', type: :model do
         subject.name = nil
         expect(subject).to_not be_valid
       end
+
+      it 'should return invalid without bio' do
+        subject.bio = nil
+        expect(subject).to_not be_valid
+      end
     end
   end
 end
