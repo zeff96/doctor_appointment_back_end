@@ -27,5 +27,12 @@ RSpec.describe 'Doctor', type: :model do
         expect(subject).to be_valid
       end
     end
+
+    context 'Return invalid data' do
+      it 'should return invalid without name' do
+        subject.name = nil
+        expect(subject).to_not be_valid
+      end
+    end
   end
 end
