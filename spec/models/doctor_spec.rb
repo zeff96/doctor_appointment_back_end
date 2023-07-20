@@ -73,5 +73,10 @@ RSpec.describe Doctor, type: :model do
       association = described_class.reflect_on_association(:social_medium)
       expect(association.options[:autosave]).to be(true)
     end
+
+    it 'accepts nested attributes for location' do
+      association = described_class.reflect_on_association(:location)
+      expect(association.options[:autosave]).to be(true)
+    end
   end
 end
