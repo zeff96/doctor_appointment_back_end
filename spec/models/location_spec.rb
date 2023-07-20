@@ -27,4 +27,11 @@ RSpec.describe Location, type: :model do
       expect(@location).to be_valid
     end
   end
+
+  describe 'associations' do
+    it 'belongs to doctor' do
+      association = described_class.reflect_on_association(:doctor)
+      expect(association.macro).to eq :belongs_to
+    end
+  end
 end
