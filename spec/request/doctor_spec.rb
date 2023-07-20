@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'jwt'
 
 RSpec.describe DoctorsController, type: :request do
 
@@ -45,6 +46,19 @@ RSpec.describe DoctorsController, type: :request do
 
     it 'return doctor details' do
       expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe 'POST /doctors' do
+    before do
+      headers = { 'Authorization' => "Bearer #{token}" }
+      allow_any_instance_of(DoctorsController).to receive(:current_user).and_return(user)
+  
+      post '/doctors', params: { doctor: doctor_params }, headers: headers
+    end
+
+    it 'creates a new doctor' do
+      expect(response).to have_http_status(:created)
     end
   end
 end

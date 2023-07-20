@@ -20,7 +20,7 @@ class DoctorsController < ApplicationController
   end
 
   def create
-    @doctor = current_user.build_doctor(doctor_params)
+    @doctor = current_user.doctors.build(doctor_params)
 
     if @doctor.save
       render :show, status: :created, location: @doctor
