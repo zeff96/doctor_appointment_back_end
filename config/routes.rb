@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   }
   root "doctors#index"
   resources :doctors do
-    resources :appointments, only: %i[new create index]
+    resources :appointments, only: %i[new create index destroy]
   end
 end

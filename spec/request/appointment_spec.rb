@@ -24,7 +24,8 @@ RSpec.describe AppointmentsController, type: :request do
 
   let(:appointment_params) do
     {
-      date: Date.today
+      date: Date.today,
+      user:
     }
   end
 
@@ -50,6 +51,21 @@ RSpec.describe AppointmentsController, type: :request do
     end
     it 'creates a new appointment' do
       expect(@doctor.appointments.count).to eq(1)
+    end
+  end
+
+  describe 'DELETE /doctors/:id/appointments' do
+    before do
+      headers = {'Authorization' => "Bearer #{token}"}
+      allow_any_instance_of(AppointmentsController).to receive(:current_user).and_return(user)
+      @doctor = user.doctors.create(doctor_params)
+      @appointment = @doctor.appointments.create!(appointment_params)
+    end
+    it 'deletes an appointment' do
+      expect{
+        delete "/doctors/#{@doctor.id}/appointments/#{@appointment.id}", headers: headers
+      }.to change(Appointment, :count).by(-1)
+      expect(response).to have_http_status(204)
     end
   end
 end
