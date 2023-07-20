@@ -21,6 +21,11 @@ RSpec.describe 'Doctor', type: :model do
         subject.name = 'post'
         expect(subject).to be_valid
       end
+
+      it 'should accept bio' do
+        subject.bio = 'Experienced Psychiatry doctor with abundance of experience'
+        expect(subject).to be_valid
+      end
     end
   end
 end
