@@ -31,10 +31,10 @@ RSpec.describe AppointmentsController, type: :request do
 
   describe 'GET /doctors/:id/appointments' do
     before do
-      headers = {'Authorization' => "Bearer #{token}"}
+      headers = { 'Authorization' => "Bearer #{token}" }
       @doctor = user.doctors.create(doctor_params)
       @appointment = @doctor.appointments.create(appointment_params)
-      get "/doctors/#{@doctor.id}/appointments", headers: headers
+      get "/doctors/#{@doctor.id}/appointments", headers:
     end
 
     it 'return list of all appointments' do
@@ -44,10 +44,10 @@ RSpec.describe AppointmentsController, type: :request do
 
   describe 'POST /doctors/:id/appointments' do
     before do
-      headers = {'Authorization' => "Bearer #{token}"}
+      headers = { 'Authorization' => "Bearer #{token}" }
       allow_any_instance_of(AppointmentsController).to receive(:current_user).and_return(user)
       @doctor = user.doctors.create(doctor_params)
-      post "/doctors/#{@doctor.id}/appointments", params: {appointment: appointment_params}, headers: headers
+      post "/doctors/#{@doctor.id}/appointments", params: { appointment: appointment_params }, headers:
     end
     it 'creates a new appointment' do
       expect(@doctor.appointments.count).to eq(1)
@@ -56,15 +56,13 @@ RSpec.describe AppointmentsController, type: :request do
 
   describe 'DELETE /doctors/:id/appointments' do
     before do
-      headers = {'Authorization' => "Bearer #{token}"}
-      allow_any_instance_of(AppointmentsController).to receive(:current_user).and_return(user)
       @doctor = user.doctors.create(doctor_params)
       @appointment = @doctor.appointments.create!(appointment_params)
     end
     it 'deletes an appointment' do
-      expect{
-        delete "/doctors/#{@doctor.id}/appointments/#{@appointment.id}", headers: headers
-      }.to change(Appointment, :count).by(-1)
+      expect do
+        delete "/doctors/#{@doctor.id}/appointments/#{@appointment.id}", headers:
+      end.to change(Appointment, :count).by(-1)
       expect(response).to have_http_status(204)
     end
   end
