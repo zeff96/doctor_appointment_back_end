@@ -61,5 +61,10 @@ RSpec.describe Doctor, type: :model do
       association = described_class.reflect_on_association(:location)
       expect(association.macro).to eq :has_one
     end
+
+    it 'has one payment' do
+      association = described_class.reflect_on_association(:payment)
+      expect(association.macro).to eq :has_one
+    end
   end
 end
