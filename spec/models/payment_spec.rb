@@ -25,4 +25,11 @@ RSpec.describe Payment, type: :model do
       expect(@payment).to be_valid
     end
   end
+
+  describe 'associations' do
+    it 'should belong to doctor' do
+      association = described_class.reflect_on_association(:doctor)
+      expect(association.macro).to eq :belongs_to
+    end
+  end
 end
