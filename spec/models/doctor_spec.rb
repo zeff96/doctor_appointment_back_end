@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Doctor', type: :model do
+RSpec.describe Doctor, type: :model do
   let(:user) {User.create(name: 'test', email: 'test@test.com', password: 'password')}
 
   describe 'Validations' do
@@ -38,6 +38,13 @@ RSpec.describe 'Doctor', type: :model do
         subject.bio = nil
         expect(subject).to_not be_valid
       end
+    end
+  end
+  
+  describe 'Associations' do
+    it 'belongs to user' do
+      association = described_class.reflect_on_association(:user)      
+      expect(association.macro).to eq :belongs_to
     end
   end
 end
