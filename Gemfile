@@ -3,6 +3,17 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.2'
 
+gem 'rubocop', '>= 1.0', '< 2.0'
+
+gem 'active_model_serializers', '~> 0.10.0'
+
+gem 'rack-cors'
+
+gem 'devise', '~> 4.9'
+
+gem 'jwt'
+
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.6'
 
@@ -47,11 +58,9 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
-gem 'rubocop', '>= 1.0', '< 2.0'
 
-gem 'active_model_serializers', '~> 0.10.0'
-
-gem 'rack-cors'
-
-gem 'devise', '~> 4.9'
-gem 'jwt'
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
+end
