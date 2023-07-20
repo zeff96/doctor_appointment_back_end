@@ -61,4 +61,14 @@ RSpec.describe DoctorsController, type: :request do
       expect(response).to have_http_status(:created)
     end
   end
+
+  describe 'DELETE /doctors/:id' do
+    it 'deletes a doctor' do
+      doctor = user.doctors.create(doctor_params)
+      expect {
+        delete "/doctors/#{doctor.id}", headers: {'Authorization' => "Bearer #{token}"}
+      }.to change(Doctor, :count).by(-1)
+      expect(response).to have_http_status(:no_content)
+    end
+  end
 end
