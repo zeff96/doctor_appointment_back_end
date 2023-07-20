@@ -78,5 +78,10 @@ RSpec.describe Doctor, type: :model do
       association = described_class.reflect_on_association(:location)
       expect(association.options[:autosave]).to be(true)
     end
+
+    it 'accepts nested attributes for payment' do
+      association = described_class.reflect_on_association(:payment)
+      expect(association.options[:autosave]).to be(true)
+    end
   end
 end
