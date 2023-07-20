@@ -33,5 +33,10 @@ RSpec.describe Appointment, type: :model do
       association = described_class.reflect_on_association(:user)
       expect(association.macro).to eq :belongs_to
     end
+
+    it 'belongs to doctor' do
+      association = described_class.reflect_on_association(:doctor)
+      expect(association.macro).to eq :belongs_to
+    end
   end
 end
