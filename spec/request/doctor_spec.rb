@@ -22,15 +22,28 @@ RSpec.describe DoctorsController, type: :request do
     }
   end
 
-  before do
-    headers = { 'Authorization' => "Bearer #{token}" }
-    user.doctors.create(doctor_params)
+  describe 'GET /doctors' do
+    before do
+      headers = { 'Authorization' => "Bearer #{token}" }
+      user.doctors.create(doctor_params)
+  
+      get '/doctors', headers: headers
+    end
 
-    get '/doctors', headers: headers
+    it 'return list of all doctors' do
+      expect(response).to have_http_status(:success)
+    end
   end
 
-  describe 'GET /doctors' do
-    it 'return list of all doctors' do
+  describe 'GET /doctors/:id' do
+    before do
+      headers = { 'Authorization' => "Bearer #{token}" }
+      doctor = user.doctors.create(doctor_params)
+  
+      get "/doctors/#{doctor.id}", headers: headers
+    end
+
+    it 'return doctor details' do
       expect(response).to have_http_status(:success)
     end
   end
