@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Doctor, type: :model do
-  let(:user) {User.create(name: 'test', email: 'test@test.com', password: 'password')}
+  let(:user) { User.create(name: 'test', email: 'test@test.com', password: 'password') }
 
   describe 'Validations' do
     subject(:doctor) do
@@ -10,7 +10,7 @@ RSpec.describe Doctor, type: :model do
       doctor = Doctor.new(
         name: 'doc1',
         bio: 'doc from kenya',
-        user: user
+        user:
       )
       doctor.image.attach(io: image_file, filename: 'ani-kolleshi.jpg', content_type: 'image/jpeg')
       doctor
@@ -40,10 +40,10 @@ RSpec.describe Doctor, type: :model do
       end
     end
   end
-  
+
   describe 'Associations' do
     it 'belongs to user' do
-      association = described_class.reflect_on_association(:user)      
+      association = described_class.reflect_on_association(:user)
       expect(association.macro).to eq :belongs_to
     end
 
