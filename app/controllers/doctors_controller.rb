@@ -9,6 +9,7 @@ class DoctorsController < ApplicationController
 
   def show
     render json: @doctor
+    puts current_user
   end
 
   def new

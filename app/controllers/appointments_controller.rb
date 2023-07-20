@@ -12,6 +12,7 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = @doctor.appointments.build(appointment_params)
+    @appointment.user = current_user
 
     if @appointment.save
       render json: @appointment
@@ -32,6 +33,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:date.merge(user_id: current_user.id))
+    params.require(:appointment).permit(:date)
   end
 end
