@@ -3,13 +3,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     build_resource(sign_up_params)
-
-    if resource.save
-      token = JsonWebToken.encode(user_id: resource.id)
-      render json: { token: }
-    else
-      render json: { message: 'user not created!' }, status: :unprocessable_entity
-    end
+    resource.save
+    sign_in(resource_name, resource)
+    render json: resource
   end
 
   protected

@@ -1,13 +1,17 @@
-class JsonWebToken
-  class << self
-    def encode(payload)
-      JWT.encode(payload, Rails.application.credentials.devise_jwt_secret_key)
-    end
+# require 'securerandom'
 
-    def decode(token)
-      JWT.decode(token, Rails.application.credentials.devise_jwt_secret_key)[0]
-    rescue JWT::DecodeError
-      nil
-    end
-  end
-end
+# class JsonWebToken
+#   class << self
+#     def encode(payload)
+#       jti = SecureRandom.uuid
+#       payload[:jti] = jti
+#       JWT.encode(payload, Rails.application.credentials.devise_jwt_secret_key)
+#     end
+
+#     def decode(token)
+#       JWT.decode(token, Rails.application.credentials.devise_jwt_secret_key)[0]
+#     rescue JWT::DecodeError
+#       nil
+#     end
+#   end
+# end

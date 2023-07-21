@@ -15,6 +15,8 @@ gem 'devise-jwt'
 
 gem 'rswag'
 
+gem 'securerandom'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.6'
 

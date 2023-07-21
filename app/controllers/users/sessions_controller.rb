@@ -12,36 +12,20 @@ class Users::SessionsController < Devise::SessionsController
           message: 'Signed in successfully'
         },
         data: user_serializer.to_json,
-        token: JsonWebToken.encode(user_id: resource.id)
       }, status: :ok
     else
       render json: {
         status: {
           code: 401,
-          message: 'Invalid credentials'
+          message: 'Invalid email or password'
         }
       }, status: :unauthorized
     end
   end
 
-  def destroy
-    super do |_user|
-      if current_user
-        render json: {
-                 status: {
-                   code: 200,
-                   message: 'Signed out successfully'
-                 }
-               },
-               status: :ok
-      else
-        render json: {
-          status: {
-            code: 401,
-            message: 'Not signed in'
-          }
-        }, status: :unauthorized
-      end
-    end
+  private
+  
+  def respond_to_on_destroy
+    render json: { message: "Logged out." }
   end
 end
