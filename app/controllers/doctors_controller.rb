@@ -9,13 +9,12 @@ class DoctorsController < ApplicationController
 
   def show
     render json: @doctor
-    puts current_user
   end
 
   def new
     @doctor = Doctor.new
     @doctor.user = current_user
-    @doctor.build_social_media
+    @doctor.build_social_medium
     @doctor.build_location
     @doctor.build_payment
   end
@@ -24,7 +23,7 @@ class DoctorsController < ApplicationController
     @doctor = current_user.doctors.build(doctor_params)
 
     if @doctor.save
-      render :show, status: :created, location: @doctor
+      render json: @doctor, status: :created
     else
       render json: { error: @doctor.errors.full_messages }, status: :unprocessable_entity
     end
@@ -45,7 +44,7 @@ class DoctorsController < ApplicationController
   def doctor_params
     params.require(:doctor).permit(:name, :bio, :image,
                                    location_attributes: %i[address city state zip_code],
-                                   social_media_attributes: %i[facebook twitter instagram],
+                                   social_medium_attributes: %i[facebook twitter instagram],
                                    payment_attributes: :consultation_fee)
   end
 end

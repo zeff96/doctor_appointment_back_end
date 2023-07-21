@@ -71,6 +71,12 @@ RSpec.describe DoctorsController, type: :request do
     it 'creates a new doctor' do
       expect(response).to have_http_status(:created)
     end
+
+    it 'responds with a json' do
+      expect(response.content_type).to eq("application/json; charset=utf-8")
+      json_respone = JSON.parse(response.body)
+      expect(json_respone).to be_an(Hash)
+    end
   end
 
   describe 'DELETE /doctors/:id' do
