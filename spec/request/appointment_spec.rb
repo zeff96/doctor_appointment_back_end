@@ -40,6 +40,12 @@ RSpec.describe AppointmentsController, type: :request do
     it 'return list of all appointments' do
       expect(response).to have_http_status(:success)
     end
+
+    it 'respond with a json' do
+      expect(response.content_type).to eq('application/json; charset=utf-8')
+      json_respone = JSON.parse(response.body)
+      expect(json_respone).to be_an(Array)
+    end
   end
 
   describe 'POST /doctors/:id/appointments' do
@@ -50,6 +56,7 @@ RSpec.describe AppointmentsController, type: :request do
       post "/doctors/#{@doctor.id}/appointments", params: { appointment: appointment_params }, headers:
     end
     it 'creates a new appointment' do
+      expect(response).to have_http_status(:created)
       expect(@doctor.appointments.count).to eq(1)
     end
   end

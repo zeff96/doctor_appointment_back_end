@@ -15,7 +15,7 @@ class AppointmentsController < ApplicationController
     @appointment.user = current_user
 
     if @appointment.save
-      render json: @appointment
+      render json: @appointment, status: :created
     else
       render json: { error: @appointment.errors.full_messages }, status: :unprocessable_entity
     end
