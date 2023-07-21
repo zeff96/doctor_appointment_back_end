@@ -27,11 +27,13 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def respond_with(_resource, _opts = {})
+    user_serializer = UserSerializer.new(resource)
     render json: {
       status: {
         code: 200,
         message: 'Signed in successfully'
-      }
+      },
+      data: user_serializer.to_json,
     }, status: :ok
   end
 
