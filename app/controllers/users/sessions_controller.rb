@@ -9,18 +9,25 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    super do |user|
+    self.resource = warden.authenticate(auth_options)
+    if resource.present?
+      sign_in(resource_name, resource)
       user_serializer = UserSerializer.new(resource)
-      if user.persisted?
-        render json: {
-          status: {
-            code: 200,
-            message: 'Signed in successfully'
-          },
-          data: user_serializer.to_json,
-          token: JsonWebToken.encode(user_id: user.id)
-        }, status: :ok
-      end
+      render json: {
+        status: {
+          code: 200,
+          message: 'Signed in successfully'
+        },
+        data: user_serializer.to_json,
+        token: JsonWebToken.encode(user_id: resource.id)
+      }, status: :ok
+    else
+      render json: {
+        status: {
+          code: 401,
+          message: 'Invalid credentials'
+        }
+      }, status: :unauthorized
     end
   end
 
