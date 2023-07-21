@@ -1,6 +1,7 @@
 user = User.find_or_initialize_by(email: 'test@test.com')
 
 if user.new_record?
+  user.name = 'test'
   user.password = 'password'
   user.save
 end
@@ -32,6 +33,11 @@ doctor.image.attach(io: File.open('public/images/jeremy-alford.jpg'), filename: 
 
 doctor.save!
 
+appointment = doctor.appointments.create!(
+  date: Date.today,
+  user:
+)
+
 doctor1 = Doctor.new(
   name: 'Dr. Usman Yousaf',
   bio: 'Experienced doctor specializing in human anatomy',
@@ -58,6 +64,11 @@ doctor1.build_payment(
 doctor1.image.attach(io: File.open('public/images/usman-yousaf.jpg'), filename: 'usman-yousaf.jpg')
 
 doctor1.save!
+
+appointment1 = doctor1.appointments.create!(
+  date: Date.today,
+  user_id: user.id
+)
 
 doctor2 = Doctor.new(
   name: 'Dr. Ani Kolleshi',
@@ -86,10 +97,7 @@ doctor2.image.attach(io: File.open('public/images/ani-kolleshi.jpg'), filename: 
 
 doctor2.save!
 
-appointment = Appointment.new(
+appointment2 = doctor2.appointments.create!(
   date: Date.today,
-  doctor: doctor,
-  user: user
+  user_id: user.id
 )
-
-appointment.save!

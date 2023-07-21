@@ -12,15 +12,17 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = @doctor.appointments.build(appointment_params)
+    @appointment.user = current_user
 
     if @appointment.save
-      render json: @appointment
+      render json: @appointment, status: :created
     else
       render json: { error: @appointment.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def destroy
+    @appointment = Appointment.find(params[:id])
     @appointment.destroy
     head :no_content
   end
@@ -32,6 +34,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:date.merge(user_id: current_user.id))
+    params.require(:appointment).permit(:date)
   end
 end

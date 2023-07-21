@@ -6,6 +6,8 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
+
 module DoctorAppoitmentApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -28,3 +30,5 @@ module DoctorAppoitmentApp
     config.api_only = true
   end
 end
+
+Rails.application.routes.default_url_options = {host: "http://localhost:3000"}
