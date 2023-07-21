@@ -33,6 +33,12 @@ RSpec.describe DoctorsController, type: :request do
     it 'return list of all doctors' do
       expect(response).to have_http_status(:success)
     end
+
+    it 'responds with a json' do
+      expect(response.content_type).to eq("application/json; charset=utf-8")
+      json_respone = JSON.parse(response.body)
+      expect(json_respone).to be_an(Array)
+    end
   end
 
   describe 'GET /doctors/:id' do
