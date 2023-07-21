@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if resource.save
       token = JsonWebToken.encode(user_id: resource.id)
-      render json: { token: token }
+      render json: { token: }
     else
       render json: { message: 'user not created!' }, status: :unprocessable_entity
     end
@@ -18,4 +18,3 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end
-

@@ -1,6 +1,5 @@
 class JsonWebToken
   class << self
-
     def encode(payload)
       JWT.encode(payload, Rails.application.credentials.devise_jwt_secret_key)
     end
