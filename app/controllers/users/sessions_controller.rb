@@ -8,14 +8,43 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super do |user|
+      user_serializer = UserSerializer.new(resource)
+      if user.persisted?
+        render json: {
+          status: {
+            code: 200,
+            message: 'Signed in successfully'
+          },
+          data: user_serializer.to_json,
+          token: JsonWebToken.encode(user_id: user.id)
+        }, status: :ok
+      end
+    end
+  end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    super do |user|
+      if current_user
+        render json: {
+                status: {
+                  code: 200,
+                  message: 'Signed out successfully'
+                }
+              },
+              status: :ok
+      else
+        render json: {
+          status: {
+            code: 401,
+            message: 'Not signed in'
+          }
+        }, status: :unauthorized
+      end
+    end
+  end
 
   # protected
 
@@ -23,36 +52,4 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-
-  private
-
-  def respond_with(_resource, _opts = {})
-    user_serializer = UserSerializer.new(resource)
-    render json: {
-      status: {
-        code: 200,
-        message: 'Signed in successfully'
-      },
-      data: user_serializer.to_json,
-    }, status: :ok
-  end
-
-  def respond_to_on_destroy
-    if current_user
-      render json: {
-               status: {
-                 code: 200,
-                 message: 'Signed out successfully'
-               }
-             },
-             status: :ok
-    else
-      render json: {
-        status: {
-          code: 401,
-          message: 'Not signed in'
-        }
-      }, status: :unauthorized
-    end
-  end
 end
