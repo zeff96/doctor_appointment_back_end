@@ -61,7 +61,7 @@ RSpec.describe AppointmentsController, type: :request do
     end
 
     it 'respond with a json' do
-      expect(response.content_type).to eq("application/json; charset=utf-8")
+      expect(response.content_type).to eq('application/json; charset=utf-8')
       json_respone = JSON.parse(response.body)
       expect(json_respone).to be_an(Hash)
     end

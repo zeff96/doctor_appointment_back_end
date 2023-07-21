@@ -35,7 +35,7 @@ RSpec.describe DoctorsController, type: :request do
     end
 
     it 'responds with a json' do
-      expect(response.content_type).to eq("application/json; charset=utf-8")
+      expect(response.content_type).to eq('application/json; charset=utf-8')
       json_respone = JSON.parse(response.body)
       expect(json_respone).to be_an(Array)
     end
@@ -54,7 +54,7 @@ RSpec.describe DoctorsController, type: :request do
     end
 
     it 'responds with a json' do
-      expect(response.content_type).to eq("application/json; charset=utf-8")
+      expect(response.content_type).to eq('application/json; charset=utf-8')
       json_respone = JSON.parse(response.body)
       expect(json_respone).to be_an(Hash)
     end
@@ -65,17 +65,28 @@ RSpec.describe DoctorsController, type: :request do
       headers = { 'Authorization' => "Bearer #{token}" }
       allow_any_instance_of(DoctorsController).to receive(:current_user).and_return(user)
 
-      post '/doctors', params: { doctor: doctor_params }, headers:
+    
     end
 
     it 'creates a new doctor' do
+      post('/doctors', params: { doctor: doctor_params }, headers:)
       expect(response).to have_http_status(:created)
     end
 
     it 'responds with a json' do
-      expect(response.content_type).to eq("application/json; charset=utf-8")
+      post('/doctors', params: { doctor: doctor_params }, headers:)
+      expect(response.content_type).to eq('application/json; charset=utf-8')
       json_respone = JSON.parse(response.body)
       expect(json_respone).to be_an(Hash)
+    end
+
+    it 'returns validation errors' do
+      invalid_params = { name: '', bio: 'invalid doctor' }
+      post('/doctors', params: { doctor: invalid_params }, headers:)
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      response_body = JSON.parse(response.body)
+      expect(response_body).to have_key('error')
     end
   end
 
