@@ -71,22 +71,11 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    addressable (2.8.4)
-      public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     bcrypt (3.1.19)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
-    capybara (3.39.2)
-      addressable
-      matrix
-      mini_mime (>= 0.1.3)
-      nokogiri (~> 1.8)
-      rack (>= 1.6.0)
-      rack-test (>= 0.6.3)
-      regexp_parser (>= 1.5, < 3.0)
-      xpath (~> 3.2)
     case_transform (0.2)
       activesupport
     concurrent-ruby (1.2.2)
@@ -123,7 +112,6 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.2)
-    matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.18.1)
@@ -148,7 +136,6 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.3)
-    public_suffix (5.0.3)
     puma (5.6.6)
       nio4r (~> 2.0)
     racc (1.7.1)
@@ -229,11 +216,6 @@ GEM
     rubocop-ast (1.29.0)
       parser (>= 3.2.1.0)
     ruby-progressbar (1.13.0)
-    rubyzip (2.3.2)
-    selenium-webdriver (4.10.0)
-      rexml (~> 3.2, >= 3.2.5)
-      rubyzip (>= 1.2.2, < 3.0)
-      websocket (~> 1.0)
     thor (1.2.2)
     timeout (0.4.0)
     tzinfo (2.0.6)
@@ -241,16 +223,9 @@ GEM
     unicode-display_width (2.4.2)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webdrivers (5.2.0)
-      nokogiri (~> 1.6)
-      rubyzip (>= 1.3.0)
-      selenium-webdriver (~> 4.0)
-    websocket (1.2.9)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    xpath (3.2.0)
-      nokogiri (~> 1.8)
     zeitwerk (2.6.8)
 
 PLATFORMS
@@ -260,7 +235,6 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   bootsnap
-  capybara
   debug
   devise (~> 4.9)
   jwt
@@ -271,9 +245,7 @@ DEPENDENCIES
   rails-controller-testing
   rspec-rails
   rubocop (>= 1.0, < 2.0)
-  selenium-webdriver
   tzinfo-data
-  webdrivers
 
 RUBY VERSION
    ruby 3.2.2p53
