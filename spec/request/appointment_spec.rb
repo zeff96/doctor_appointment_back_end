@@ -50,20 +50,28 @@ RSpec.describe AppointmentsController, type: :request do
 
   describe 'POST /doctors/:id/appointments' do
     before do
-      headers = { 'Authorization' => "Bearer #{token}" }
       allow_any_instance_of(AppointmentsController).to receive(:current_user).and_return(user)
       @doctor = user.doctors.create(doctor_params)
-      post "/doctors/#{@doctor.id}/appointments", params: { appointment: appointment_params }, headers:
     end
     it 'creates a new appointment' do
+      post("/doctors/#{@doctor.id}/appointments", params: { appointment: appointment_params }, headers:)
       expect(response).to have_http_status(:created)
       expect(@doctor.appointments.count).to eq(1)
     end
 
     it 'respond with a json' do
+      post("/doctors/#{@doctor.id}/appointments", params: { appointment: appointment_params }, headers:)
       expect(response.content_type).to eq('application/json; charset=utf-8')
       json_respone = JSON.parse(response.body)
       expect(json_respone).to be_an(Hash)
+    end
+
+    it 'returns validation errors' do
+      invalid_params = { date: '' }
+      post("/doctors/#{@doctor.id}/appointments", params: { appointment: invalid_params }, headers:)
+      expect(response).to have_http_status(:unprocessable_entity)
+      json_respone = JSON.parse(response.body)
+      expect(json_respone).to have_key('error')
     end
   end
 

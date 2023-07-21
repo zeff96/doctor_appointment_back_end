@@ -62,10 +62,7 @@ RSpec.describe DoctorsController, type: :request do
 
   describe 'POST /doctors' do
     before do
-      headers = { 'Authorization' => "Bearer #{token}" }
       allow_any_instance_of(DoctorsController).to receive(:current_user).and_return(user)
-
-    
     end
 
     it 'creates a new doctor' do
