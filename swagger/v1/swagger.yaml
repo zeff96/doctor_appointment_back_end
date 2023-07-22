@@ -70,3 +70,29 @@ components:
           "$ref": "#/components/schemas/SocialMediumInput"
         payment_attributes:
           "$ref": "#/components/schemas/PaymentInput"
+    Location:
+      type: object
+      properties:
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: integer
+    LocationInput:
+      type: object
+      properties:
+        address:
+          type: string
+          example: 123 Main St
+        city:
+          type: string
+          example: New York
+        state:
+          type: string
+          example: NY
+        zip_code:
+          type: integer
+          example: 12345
