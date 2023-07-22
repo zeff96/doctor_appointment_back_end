@@ -263,7 +263,7 @@ RSpec.configure do |config|
               }
             },
             responses: {
-              '200': {
+              '201': {
                 'application/json': {
                   description: 'Created successfully',
                   content: {
@@ -290,6 +290,38 @@ RSpec.configure do |config|
                     }
                   }
                 }
+              }
+            }
+          }
+        },
+        '/doctors/{doctor_id}/appointments/{appointment_id}': {
+          delete: {
+            summary: 'Delete appointment by ID',
+            tags: ['Appointments'],
+            description: 'Deletes aappointment by a given ID',
+            parameters: [
+              {
+                name: 'doctor_id',
+                in: 'path',
+                required: true,
+                description: 'Doctor ID',
+                schema: {
+                  type: 'integer'
+                }
+              },
+              {
+                name: 'appointment_id',
+                in: 'path',
+                required: true,
+                description: 'Appointment ID',
+                schema: {
+                  type: 'integer'
+                }
+              }
+            ],
+            responses: {
+              '204': {
+                description: 'Deleted successfully',
               }
             }
           }
