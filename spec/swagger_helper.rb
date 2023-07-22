@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.configure do |config|
-
   config.swagger_root = Rails.root.join('swagger').to_s
 
   config.swagger_docs = {
@@ -17,7 +16,7 @@ RSpec.configure do |config|
           url: 'https://{defaultHost}',
           variables: {
             defaultHost: {
-                default: 'www.example.com'
+              default: 'www.example.com'
             }
           }
         }
@@ -109,7 +108,8 @@ RSpec.configure do |config|
                         }
                       }
                     },
-                    required: ['name', 'bio', 'image', 'location_attributes', 'payment_attributes', 'social_medim_attributes']
+                    required: %w[name bio image location_attributes payment_attributes
+                                 social_medim_attributes]
                   }
                 }
               }
@@ -149,7 +149,7 @@ RSpec.configure do |config|
         '/doctors/{id}': {
           get: {
             summary: 'Get a doctor by ID',
-            tags:['Doctors'],
+            tags: ['Doctors'],
             description: 'Retrieves a doctor by ID',
             parameters: [
               {
@@ -321,7 +321,7 @@ RSpec.configure do |config|
             ],
             responses: {
               '204': {
-                description: 'Deleted successfully',
+                description: 'Deleted successfully'
               }
             }
           }
@@ -441,7 +441,7 @@ RSpec.configure do |config|
               },
               zip_code: {
                 type: 'integer',
-                example: 12345
+                example: 12_345
               }
             }
           },

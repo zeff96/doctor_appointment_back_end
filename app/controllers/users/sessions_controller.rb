@@ -11,7 +11,7 @@ class Users::SessionsController < Devise::SessionsController
           code: 200,
           message: 'Signed in successfully'
         },
-        data: user_serializer.to_json,
+        data: user_serializer.to_json
       }, status: :ok
     else
       render json: {
@@ -24,8 +24,8 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   private
-  
+
   def respond_to_on_destroy
-    render json: { message: "Logged out." }
+    render json: { message: 'Logged out.' }
   end
 end
