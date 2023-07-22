@@ -112,7 +112,7 @@ RSpec.configure do |config|
           #                 }
           #               }
           #             },
-          #             social_media_attributes: {
+          #             social_medium_attributes: {
           #               type: 'object',
           #               properties: {
           #                 facebook: {
@@ -185,7 +185,7 @@ RSpec.configure do |config|
               location_attributes: {
                 '$ref': '#/components/schemas/Location'
               },
-              social_media_attributes: {
+              social_medium_attributes: {
                 '$ref': '#/components/schemas/SocialMedium'
               },
               payment_attributes: {
@@ -211,7 +211,7 @@ RSpec.configure do |config|
               location_attributes: {
                 '$ref': '#/components/schemas/LocationInput'
               },
-              social_media_attributes: {
+              social_medium_attributes: {
                 '$ref': '#/components/schemas/SocialMediumInput'
               },
               payment_attributes: {
@@ -254,6 +254,37 @@ RSpec.configure do |config|
               zip_code: {
                 type: 'integer',
                 example: 12345
+              }
+            }
+          },
+          SocialMedium: {
+            type: 'object',
+            properties: {
+              facebook: {
+                type: 'string'
+              },
+              twitter: {
+                type: 'string'
+              },
+              instagram: {
+                type: 'string'
+              }
+            }
+          },
+          SocialMediumInput: {
+            type: 'object',
+            properties: {
+              facebook: {
+                type: 'string',
+                example: 'https://facebook.com/doctorspage'
+              },
+              twitter: {
+                type: 'string',
+                example: 'https://twitter.com/doctorspage'
+              },
+              instagram: {
+                type: 'string',
+                example: 'https://instagram.com/doctorspage'
               }
             }
           }

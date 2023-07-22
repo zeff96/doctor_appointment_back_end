@@ -96,3 +96,24 @@ components:
         zip_code:
           type: integer
           example: 12345
+    SocialMedium:
+      type: object
+      properties:
+        facebook:
+          type: string
+        twitter:
+          type: string
+        instagram:
+          type: string
+    SocialMediumInput:
+      type: object
+      properties:
+        facebook:
+          type: string
+          example: https://facebook.com/doctorspage
+        twitter:
+          type: string
+          example: https://twitter.com/doctorspage
+        instagram:
+          type: string
+          example: https://instagram.com/doctorspage
