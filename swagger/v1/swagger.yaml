@@ -133,8 +133,91 @@ paths:
       responses:
         '204':
           description: Doctor deleted successfully
+  "/doctors/{id}/appointments":
+    get:
+      summary: Get all appoitments for a given doctor
+      tags:
+      - Appointments
+      description: Retrieves list of all appointments for a given doctor
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Doctor ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Appointment"
+    post:
+      summary: Creates a new appointment for a specific doctor
+      tags:
+      - Appointments
+      description:
+      - Creates a new appointment for a specific doctor
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Doctor ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  format: date
+              required:
+              - date
+      responses:
+        '200':
+          application/json:
+            description: Created successfully
+            content:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Appointment"
+        '400':
+          description: Bad request Invalid-data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
 components:
   schemas:
+    Appointment:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        city:
+          type: string
+          description: New York
+    AppointmentInput:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        city:
+          type: string
+          description: New York
     Doctor:
       type: object
       properties:
