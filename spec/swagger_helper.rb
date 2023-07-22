@@ -16,21 +16,21 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'API V1',
-        version: 'v1'
+        title: 'My Medical App API',
+        version: 'v1',
+        description: 'API documentation for managing doctors and appointments in My Medical App.'
       },
-      paths: {},
       servers: [
         {
           url: 'https://{defaultHost}',
           variables: {
             defaultHost: {
-              default: 'www.example.com'
+                default: 'www.example.com'
             }
           }
         }
       ]
-    }
+    },
   }
 
   # Specify the format of the output Swagger file when running 'rswag:specs:swaggerize'.

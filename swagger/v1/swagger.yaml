@@ -1,0 +1,12 @@
+---
+openapi: 3.0.1
+info:
+  title: My Medical App API
+  version: v1
+  description: API documentation for managing doctors and appointments in My Medical
+    App.
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
