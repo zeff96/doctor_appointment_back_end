@@ -17,13 +17,6 @@ paths:
       tags:
       - Doctors
       description: Returns a list of all doctors.
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: Doctor ID
-        schema:
-          type: integer
       responses:
         '200':
           description: Successful operation
@@ -48,7 +41,7 @@ components:
           type: string
         location_attributes:
           "$ref": "#/components/schemas/Location"
-        social_media_attributes:
+        social_medium_attributes:
           "$ref": "#/components/schemas/SocialMedium"
         payment_attributes:
           "$ref": "#/components/schemas/Payment"
@@ -66,7 +59,7 @@ components:
           format: binary
         location_attributes:
           "$ref": "#/components/schemas/LocationInput"
-        social_media_attributes:
+        social_medium_attributes:
           "$ref": "#/components/schemas/SocialMediumInput"
         payment_attributes:
           "$ref": "#/components/schemas/PaymentInput"
@@ -117,3 +110,16 @@ components:
         instagram:
           type: string
           example: https://instagram.com/doctorspage
+    Payment:
+      type: object
+      properties:
+        consultation_fee:
+          type: number
+          format: float
+    PaymentInput:
+      type: object
+      properties:
+        consultation_fee:
+          type: number
+          format: float
+          example: 150.0
