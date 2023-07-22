@@ -145,7 +145,37 @@ RSpec.configure do |config|
               }
             }
           }
-        }
+        },
+        '/doctors/{id}': {
+          get: {
+            summary: 'Get a doctor by ID',
+            tags:['Doctors'],
+            description: 'Retrieves a doctor by ID',
+            parameters: [
+              {
+                name: 'id',
+                in: 'path',
+                required: true,
+                description: 'Doctor ID',
+                schema: {
+                  type: 'integer'
+                }
+              }
+            ],
+            responses: {
+              '200': {
+                description: 'Successful operation',
+                content: {
+                  'application/json': {
+                    schema: {
+                      '$ref': '#/components/schemas/Doctor'
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
       },
       components: {
         schemas: {
