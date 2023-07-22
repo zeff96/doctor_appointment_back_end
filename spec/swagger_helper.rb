@@ -174,6 +174,28 @@ RSpec.configure do |config|
                 }
               }
             }
+          },
+
+          delete: {
+            summary: ['Delete a doctor by id'],
+            tags: ['Doctors'],
+            description: 'Deletes a doctor by id',
+            parameters: [
+              {
+                name: 'id',
+                in: 'path',
+                required: true,
+                description: 'Doctor ID',
+                schema: {
+                  type: 'integer'
+                }
+              }
+            ],
+            responses: {
+              '204': {
+                description: 'Doctor deleted successfully'
+              }
+            }
           }
         },
       },
