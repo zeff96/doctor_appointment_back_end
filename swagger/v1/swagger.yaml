@@ -17,6 +17,13 @@ paths:
       tags:
       - Doctors
       description: Returns a list of all doctors.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Doctor ID
+        schema:
+          type: integer
       responses:
         '200':
           description: Successful operation
@@ -26,3 +33,40 @@ paths:
                 type: array
                 items:
                   "$ref": "#/components/schemas/Doctor"
+components:
+  schemas:
+    Doctor:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        bio:
+          type: string
+        image:
+          type: string
+        location_attributes:
+          "$ref": "#/components/schemas/Location"
+        social_media_attributes:
+          "$ref": "#/components/schemas/SocialMedium"
+        payment_attributes:
+          "$ref": "#/components/schemas/Payment"
+    DoctorInput:
+      type: object
+      properties:
+        name:
+          type: string
+          example: John Doe
+        bio:
+          type: string
+          example: Experienced doctor with specialization in Cardiology
+        image:
+          type: string
+          format: binary
+        location_attributes:
+          "$ref": "#/components/schemas/LocationInput"
+        social_media_attributes:
+          "$ref": "#/components/schemas/SocialMediumInput"
+        payment_attributes:
+          "$ref": "#/components/schemas/PaymentInput"
