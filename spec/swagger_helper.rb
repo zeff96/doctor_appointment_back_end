@@ -46,104 +46,105 @@ RSpec.configure do |config|
               }
             }
           },
-          # post: {
-          #   summary: 'Create a new doctor',
-          #   tags: ['Posts'],
-          #   description: 'Creates a new doctor with the provided data.',
-          #   requestBody: {
-          #     required: true,
-          #     content: {
-          #       'application/json': {
-          #         schema: {
-          #           type: 'object',
-          #           properties: {
-          #             name: {
-          #               type: 'string'
-          #             },
-          #             bio: {
-          #               type: 'string',
-          #               format: 'text'
-          #             },
-          #             image: {
-          #               type: 'string',
-          #               format: 'binary'
-          #             },
-          #             location_attributes: {
-          #               type: 'object',
-          #               properties: {
-          #                 address: {
-          #                   type: 'string'
-          #                 },
-          #                 city: {
-          #                   type: 'string'
-          #                 },
-          #                 state: {
-          #                   type: 'string'
-          #                 },
-          #                 zip_code: {
-          #                   type: 'integer'
-          #                 }
-          #               }
-          #             },
-          #             payment_attributes: {
-          #               type: 'object',
-          #               properties: {
-          #                 consultation_fee: {
-          #                   type: 'decimal'
-          #                 }
-          #               }
-          #             },
-          #             social_medium_attributes: {
-          #               type: 'object',
-          #               properties: {
-          #                 facebook: {
-          #                   type: 'string'
-          #                 },
-          #                 twitter: {
-          #                   type: 'string'
-          #                 },
-          #                 instagram: {
-          #                   type: 'string'
-          #                 }
-          #               }
-          #             }
-          #           },
-          #           required: ['name', 'bio', 'image', 'location_attributes', 'payment_attributes', 'social_media_attributes'] // Add any other required fields
-          #         }
-          #       }
-          #     }
-          #   },
-          #   responses: {
-          #     '201': {
-          #       description: 'Post created successfully',
-          #       content: {
-          #         'application/json': {
-          #           schema: {
-          #             type: 'array',
-          #             items: {
-          #               '$ref': '#/components/schemas/Doctor'
-          #             }
-          #           }
-          #         }
-          #       }
-          #     },
-          #     '400': {
-          #       description: 'Bad request - Invalid data',
-          #       content: {
-          #         'application/json': {
-          #           schema: {
-          #             type: 'object',
-          #             properties: {
-          #               error: {
-          #                 type: 'string'
-          #               }
-          #             }
-          #           }
-          #         }
-          #       }
-          #     }
-          #   }
-          # }
+          post: {
+            summary: 'Create a new doctor',
+            tags: ['Doctors'],
+            description: 'Creates a new doctor with the provided data.',
+            requestBody: {
+              required: true,
+              content: {
+                'application/json': {
+                  schema: {
+                    type: 'object',
+                    properties: {
+                      name: {
+                        type: 'string'
+                      },
+                      bio: {
+                        type: 'string',
+                        format: 'text'
+                      },
+                      image: {
+                        type: 'string',
+                        format: 'binary'
+                      },
+                      location_attributes: {
+                        type: 'object',
+                        properties: {
+                          address: {
+                            type: 'string'
+                          },
+                          city: {
+                            type: 'string'
+                          },
+                          state: {
+                            type: 'string'
+                          },
+                          zip_code: {
+                            type: 'integer'
+                          }
+                        }
+                      },
+                      payment_attributes: {
+                        type: 'object',
+                        properties: {
+                          consultation_fee: {
+                            type: 'number',
+                            format: 'float'
+                          }
+                        }
+                      },
+                      social_medium_attributes: {
+                        type: 'object',
+                        properties: {
+                          facebook: {
+                            type: 'string'
+                          },
+                          twitter: {
+                            type: 'string'
+                          },
+                          instagram: {
+                            type: 'string'
+                          }
+                        }
+                      }
+                    },
+                    required: ['name', 'bio', 'image', 'location_attributes', 'payment_attributes', 'social_medim_attributes']
+                  }
+                }
+              }
+            },
+            responses: {
+              '201': {
+                description: 'Doctor created successfully',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'array',
+                      items: {
+                        '$ref': '#/components/schemas/Doctor'
+                      }
+                    }
+                  }
+                }
+              },
+              '400': {
+                description: 'Bad request - Invalid data',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                      properties: {
+                        error: {
+                          type: 'string'
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       components: {
