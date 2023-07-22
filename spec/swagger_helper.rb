@@ -29,8 +29,34 @@ RSpec.configure do |config|
             }
           }
         }
-      ]
-    },
+      ],
+      paths: {
+        '/doctors': {
+          get: {
+            summary: 'Get all doctors',
+            tags: [
+              'Doctors'
+            ],
+            description: 'Returns a list of all doctors.',
+            responses: {
+              '200': {
+                description: 'Successful operation',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'array',
+                      items: {
+                        '$ref': '#/components/schemas/Doctor'
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+        }
+      }
+    }
   }
 
   # Specify the format of the output Swagger file when running 'rswag:specs:swaggerize'.
