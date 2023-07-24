@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
-  get 'tokens/create'
-  get 'tokens/verify'
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   devise_for :users, path: '', path_names: {
     sign_in: '/login',
     sign_out: '/logout',
-    registration: '/signup'
+    registration: '/signup',
+    password: '/reset_password'
   }, controllers: {
     sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
   }
   root "doctors#index"
   resources :doctors do
