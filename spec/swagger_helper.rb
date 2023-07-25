@@ -506,6 +506,23 @@ RSpec.configure do |config|
               }
             }
           },
+          UserInput: {
+            type: 'object',
+            properties: {
+              name: {
+                type: 'string',
+                example: 'John Doe'
+              },
+              email: {
+                type: 'string',
+                format: 'email'
+              },
+              password: {
+                type: 'string',
+                format: 'password'
+              }
+            }
+          },
           Appointment: {
             type: 'object',
             properties: {
