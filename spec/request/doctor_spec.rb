@@ -18,7 +18,7 @@ RSpec.describe DoctorsController, type: :request do
 
   describe 'GET /doctors' do
     before do
-      headers = { "Accept" => 'application/json', 'Content-Type' => 'application/json' }
+      headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
       auth_headers = Devise::JWT::TestHelpers.auth_headers(headers, user)
       user.doctors.create(doctor_params)
 
@@ -38,7 +38,7 @@ RSpec.describe DoctorsController, type: :request do
 
   describe 'GET /doctors/:id' do
     before do
-      headers = { "Accept" => 'application/json', 'Content-Type' => 'application/json' }
+      headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
       auth_headers = Devise::JWT::TestHelpers.auth_headers(headers, user)
       doctor = user.doctors.create(doctor_params)
 
@@ -58,7 +58,7 @@ RSpec.describe DoctorsController, type: :request do
 
   describe 'POST /doctors' do
     before do
-      headers = { "Accept" => 'application/json', 'Content-Type' => 'application/json' }
+      headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
       @auth_headers = Devise::JWT::TestHelpers.auth_headers(headers, user)
       allow_any_instance_of(DoctorsController).to receive(:current_user).and_return(user)
     end
@@ -87,7 +87,7 @@ RSpec.describe DoctorsController, type: :request do
 
   describe 'DELETE /doctors/:id' do
     it 'deletes a doctor' do
-      headers = { "Accept" => 'application/json', 'Content-Type' => 'application/json' }
+      headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
       auth_headers = Devise::JWT::TestHelpers.auth_headers(headers, user)
       doctor = user.doctors.create(doctor_params)
       expect do

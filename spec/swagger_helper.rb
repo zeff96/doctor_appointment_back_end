@@ -22,6 +22,164 @@ RSpec.configure do |config|
         }
       ],
       paths: {
+        '/users': {
+          get: {
+            summary: 'Get all users',
+            tags: [
+              'Users'
+            ],
+            description: 'Returns a list of all users.',
+            responses: {
+              '200': {
+                description: 'Successful operation',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'array',
+                      items: {
+                        '$ref': '#/components/schemas/User'
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          post: {
+            summary: 'Create a new user',
+            tags: ['Users'],
+            description: 'Creates a new user with the provided data.',
+            requestBody: {
+              required: true,
+              content: {
+                'application/json': {
+                  schema: {
+                    type: 'object',
+                    properties: {
+                      name: {
+                        type: 'string'
+                      },
+                      email: {
+                        type: 'string',
+                        format: 'email'
+                      },
+                      password: {
+                        type: 'string',
+                        format: 'password'
+                      }
+                    },
+                    required: [
+                      'name',
+                      'email',
+                      'password'
+                    ]
+                  }
+                }
+              }
+            },
+            responses: {
+              '201': {
+                description: 'User created successfully',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                      items: {
+                        '$ref': '#/components/schemas/User'
+                      }
+                    }
+                  }
+                }
+              },
+              '400': {
+                description: 'Bad request',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'array',
+                      items: {
+                        '$ref': '#/components/schemas/UserError'
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        '/users/{id}': {
+          get: {
+            summary: 'Get a user by id',
+            tags: [
+              'Users'
+            ],
+            description: 'Returns a user by id.',
+            parameters: [
+              {
+                name: 'id',
+                in: 'path',
+                required: true,
+                description: 'User id',
+                schema: {
+                  type: 'integer'
+                }
+              }
+            ],
+            responses: {
+              '200': {
+                description: 'Successful operation',
+                content: {
+                  'application/json': {
+                    schema: {
+                      '$ref': '#/components/schemas/User'
+                    }
+                  }
+                }
+              }
+            }
+          },
+          delete: {
+            summary: 'Delete a user',
+            tags: [
+              'Users'
+            ],
+            description: 'Deletes a user.',
+            parameters: [
+              {
+                name: 'id',
+                in: 'path',
+                required: true,
+                description: 'User id',
+                schema: {
+                  type: 'integer'
+                }
+              }
+            ],
+            responses: {
+              '204': {
+                description: 'User deleted successfully'
+              }
+            }
+          },
+          put: {
+            summary: 'Update a user',
+            tags: [
+              'Users'
+            ],
+            description: 'Updates a user.',
+            parameters: [
+              {
+                name: 'id',
+                in: 'path',
+                required: true,
+                description: 'User id',
+                schema: {
+                  type: 'integer'
+                }
+              }
+            ]
+          }
+        }, 
         '/doctors': {
           get: {
             summary: 'Get all doctors',
@@ -329,6 +487,23 @@ RSpec.configure do |config|
       },
       components: {
         schemas: {
+          User: {
+            type: 'object',
+            properties: {
+              name: {
+                type: 'string',
+                example: 'John Doe'
+              },
+              email: {
+                type: 'string',
+                format: 'email'
+              },
+              password: {
+                type: 'string',
+                format: 'password'
+              }
+            }
+          },
           Appointment: {
             type: 'object',
             properties: {
