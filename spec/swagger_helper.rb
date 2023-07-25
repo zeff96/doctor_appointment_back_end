@@ -1,3 +1,5 @@
+# We have to disable this linters check to enable api doc creation
+# rubocop:disable Metrics/BlockLength
 require 'rails_helper'
 
 RSpec.configure do |config|
@@ -68,10 +70,10 @@ RSpec.configure do |config|
                         format: 'password'
                       }
                     },
-                    required: [
-                      'name',
-                      'email',
-                      'password'
+                    required: %w[
+                      name
+                      email
+                      password
                     ]
                   }
                 }
@@ -179,7 +181,7 @@ RSpec.configure do |config|
               }
             ]
           }
-        }, 
+        },
         '/doctors': {
           get: {
             summary: 'Get all doctors',
@@ -677,3 +679,4 @@ RSpec.configure do |config|
 
   config.swagger_format = :yaml
 end
+# rubocop:enable Metrics/BlockLength

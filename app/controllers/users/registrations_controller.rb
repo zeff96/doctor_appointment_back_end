@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def user_exists?(email)
-    User.exists?(email: email)
+    User.exists?(email:)
   end
 
   def sign_up_params
