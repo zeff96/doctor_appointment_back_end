@@ -7,11 +7,11 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-    @appointment = current_user.doctor.appointments.build
+    @appointment = current_user.appointments.build
   end
 
   def create
-    @appointment = current_user.doctor.appointments.build(appointment_params)
+    @appointment = current_user.appointments.build(appointment_params)
 
     if @appointment.save
       render json: @appointment, status: :created
