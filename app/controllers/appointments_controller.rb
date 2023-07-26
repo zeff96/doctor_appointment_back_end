@@ -7,7 +7,7 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-    @appointment = @doctor.appointments.build(user_name: current_user&.name)
+    @appointment = current_user.doctor.appointments.build(appointment_params)
   end
 
   def create
