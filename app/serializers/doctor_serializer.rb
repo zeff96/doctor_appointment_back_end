@@ -1,13 +1,7 @@
 class DoctorSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :name, :bio, :image_url, :social_media, :location, :payment
-
-  def image_url
-    return unless object.image.attached?
-
-    url_for(object.image)
-  end
+  attributes :id, :name, :bio, :image, :social_media, :location, :payment
 
   def social_media
     {
