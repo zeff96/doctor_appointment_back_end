@@ -3,13 +3,12 @@ require 'devise/jwt/test_helpers'
 
 RSpec.describe AppointmentsController, type: :request do
   let(:user) { User.create(name: 'test', email: 'test@test.com', password: 'password') }
-  let(:file_path) { Rails.root.join('public', 'images', 'ani-kolleshi.jpg') }
 
   let(:doctor_params) do
     {
       name: 'doc2',
       bio: 'doc from kenya',
-      image: Rack::Test::UploadedFile.new(file_path, 'image/jpeg'),
+      image: 'www.image.com',
       location_attributes: { address: '123 Main St', city: 'New York', state: 'NY', zip_code: '10001' },
       social_medium_attributes: { facebook: 'facebook_url', twitter: 'twitter_handle', instagram: 'instagram_handle' },
       payment_attributes: { consultation_fee: 100 }

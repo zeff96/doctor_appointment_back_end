@@ -5,14 +5,12 @@ RSpec.describe Doctor, type: :model do
 
   describe 'Validations' do
     subject(:doctor) do
-      image_path = Rails.root.join('public', 'images', 'ani-kolleshi.jpg')
-      image_file = File.open(image_path)
       doctor = Doctor.new(
         name: 'doc1',
         bio: 'doc from kenya',
+        image: 'www.image.com',
         user:
       )
-      doctor.image.attach(io: image_file, filename: 'ani-kolleshi.jpg', content_type: 'image/jpeg')
       doctor
     end
 
