@@ -7,11 +7,12 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-    @appointment = current_user.appointments.build
+    @appointment = @doctor.appointments.build
   end
 
   def create
-    @appointment = current_user.appointments.build(appointment_params)
+    @appointment = @doctor.appointments.build(appointment_params)
+    @appointment.user = current_user
 
     if @appointment.save
       render json: @appointment, status: :created
@@ -33,6 +34,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:date, :city, :user_id, :user_name)
+    params.require(:appointment).permit(:date, :city, :user_name)
   end
 end
