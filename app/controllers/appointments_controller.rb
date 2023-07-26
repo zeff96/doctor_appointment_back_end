@@ -11,7 +11,8 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    @appointment = current_user.@doctor.appointments.build(appointment_params)
+    @appointment = @doctor.appointments.build(appointment_params)
+    @appointment.user_id = current_user.id
 
     if @appointment.save
       render json: @appointment, status: :created
