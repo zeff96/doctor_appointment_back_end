@@ -2,12 +2,12 @@ class AppointmentsController < ApplicationController
   before_action :set_doctor, only: %i[new create index]
 
   def index
-    @appointments = @doctor.appointments
+    @appointments = current_user.appointments.includes(:doctor)
     render json: @appointments, each_serializer: AppointmentSerializer
   end
 
   def new
-    @appointment = @doctor.appointments.build
+    @appointment = @doctor.appointments.build(user_name: current_user&.name)
   end
 
   def create
@@ -30,10 +30,10 @@ class AppointmentsController < ApplicationController
   private
 
   def set_doctor
-    @doctor = Doctor.find(params[:doctor_id])
+    @doctor = params[:doctor_id] ? Doctor.find(params[:doctor_id]) : nil
   end
 
   def appointment_params
-    params.require(:appointment).permit(:date)
+    params.require(:appointment).permit(:date, :city, :user_name)
   end
 end
