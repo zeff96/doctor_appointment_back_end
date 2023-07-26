@@ -22,8 +22,6 @@ class DoctorsController < ApplicationController
   def create
     @doctor = current_user.doctors.build(doctor_params)
 
-    @doctor.image.attach(params[:doctor][:image]) if params[:doctor][:image]
-
     if @doctor.save
       render json: @doctor, status: :created
     else
