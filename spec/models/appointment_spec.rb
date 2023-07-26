@@ -7,7 +7,6 @@ RSpec.describe Appointment, type: :model do
       name: 'doc1',
       bio: 'doc from kenya',
       image: 'www.image.com',
-      location: Location.new(address: '123 Main St', city: 'New York', state: 'NY', zip_code: '10001'),
       user:
     )
     doctor
@@ -17,6 +16,7 @@ RSpec.describe Appointment, type: :model do
     before do
       @appointment = Appointment.create(
         date: Date.today,
+        city: 'Migori',
         doctor: doctor_with_image,
         user:
       )
@@ -24,10 +24,6 @@ RSpec.describe Appointment, type: :model do
 
     it 'should be valid' do
       expect(@appointment).to be_valid
-    end
-
-    it 'returns doctors city' do
-      expect(@appointment.city).to eq doctor_with_image.location.city
     end
   end
 

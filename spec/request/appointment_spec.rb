@@ -18,6 +18,7 @@ RSpec.describe AppointmentsController, type: :request do
   let(:appointment_params) do
     {
       date: Date.today,
+      city: 'Migori',
       user_id: user.id
     }
   end
