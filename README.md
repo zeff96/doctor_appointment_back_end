@@ -156,20 +156,11 @@ To run the project, execute the following command:
 <u>**For Backend**</u>
 
 ```sh
-  set up database and migrations as follow:-
-  rake db:create
-  rake db:migrate
-
-  Set up JWT secret key key as follow:-
-  rails secret (copy secret_key)
-
-  Linux/Mac user:-
-  export DEVISE_JWT_SECRET_KEY=secret_key
-
-  Window user:-
-  set DEVISE_JWT_SECRET_KEY=secret_key
-  or
-  $env:DEVISE_JWT_SECRET_KEY="secret_key"
+  1. Run `rails secret`.  Copy the key.
+  2. Remove config/master.key and config/credentials.yml.enc if they exist.
+  3. Run `EDITOR="code --wait" bin/rails credentials:edit`
+  4. In the editor that opens, add this:  devise_jwt_secret_key: <the key you copied in step 1>
+  5. Save the file and close the editor.  New master.key, credentials.yml.enc files will be generated, and the key will be stored in `Rails.application.credentials.devise_jwt_secret_key`.
 
 
   rails server
