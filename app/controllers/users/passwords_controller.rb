@@ -1,7 +1,4 @@
 class Users::PasswordsController < Devise::PasswordsController
-  # GET /resource/password/new
-
-  # POST /resource/password
   def create
     user = User.find_by(email: params[:user][:email])
 
@@ -13,9 +10,6 @@ class Users::PasswordsController < Devise::PasswordsController
     end
   end
 
-  # GET /resource/password/edit?reset_password_token=abcdef
-
-  # PUT /resource/password
   def update
     self.resource = resource_class.reset_password_by_token(
       reset_password_token: params[:user][:reset_password_token],
@@ -29,15 +23,4 @@ class Users::PasswordsController < Devise::PasswordsController
       render json: { error: resource.errors.full_messages.join(', ') }, status: :unprocessable_entity
     end
   end
-
-  # protected
-
-  # def after_resetting_password_path_for(resource)
-  #   super(resource)
-  # end
-
-  # The path used after sending reset password instructions
-  # def after_sending_reset_password_instructions_path_for(resource_name)
-  #   super(resource_name)
-  # end
 end

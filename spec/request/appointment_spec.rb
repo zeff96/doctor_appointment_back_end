@@ -19,17 +19,17 @@ RSpec.describe AppointmentsController, type: :request do
     {
       date: Date.today,
       city: 'Migori',
-      user_id: user.id
+      user:
     }
   end
 
-  describe 'GET /doctors/:id/appointments' do
+  describe 'GET /appointments' do
     before do
       headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
       auth_headers = Devise::JWT::TestHelpers.auth_headers(headers, user)
       @doctor = user.doctors.create(doctor_params)
       @appointment = @doctor.appointments.create(appointment_params)
-      get "/doctors/#{@doctor.id}/appointments", headers: auth_headers
+      get '/appointments', headers: auth_headers
     end
 
     it 'return list of all appointments' do

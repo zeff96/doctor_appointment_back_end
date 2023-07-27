@@ -156,6 +156,10 @@ To run the project, execute the following command:
 <u>**For Backend**</u>
 
 ```sh
+  set up database and migrations as follow:-
+  rake db:create
+  rake db:migrate
+
   Set up JWT secret key key as follow:-
   rails secret (copy secret_key)
 
@@ -174,17 +178,24 @@ To run the project, execute the following command:
 <u>**For Frontend**</u>
 
 ```sh
+  npm install
   npm start
 ```
 
 ### Run tests
 
 To run tests, run the following command:
+<u>**For Frontend**</u>
 
 ```sh
   npm test
 ```
 
+<u>**For Backend**</u>
+
+```sh
+  rspec
+```
 ### Deployment
 
 You can deploy this project using:
