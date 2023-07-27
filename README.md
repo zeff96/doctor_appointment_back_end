@@ -74,7 +74,7 @@ Doctor Appointment provides a seamless and reliable booking experience.
 
 ## 🗎 API Documentation <a name="api-docs"></a>
 
-- Check here API documentation [Doctor Appointment](https://github.com/zeff96/doctor_appointment_back_end/api-docs/index.html)
+- Check here API documentation [Doctor Appointment](https://doctor-api-3dvk.onrender.com/api-docs/index.html)
 
 <!-- Kanban Board -->
 
