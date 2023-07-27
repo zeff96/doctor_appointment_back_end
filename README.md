@@ -35,7 +35,7 @@
 **Doctor Appointment ** is a doctor booking website that allows users to easily book an appointment with their preferred doctor. User can reserve an appointment from the available doctors by providing the date and city.
 Doctor Appointment provides a seamless and reliable booking experience.
 
-**Link for the Frontend repository:** [URL](https://github.com/zeff96/doctor_appointment_back_end)
+**Link for the Frontend repository:** [URL](https://github.com/zeff96/doctor_appoitment_front_end)
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -91,7 +91,7 @@ Doctor Appointment provides a seamless and reliable booking experience.
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo]()
+- [Live Demo](https://doctor-appointment-cx5g.onrender.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
