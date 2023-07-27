@@ -18,7 +18,7 @@ RSpec.configure do |config|
           url: 'https://{defaultHost}',
           variables: {
             defaultHost: {
-              default: 'www.example.com'
+              default: 'https://doctor-api-3dvk.onrender.com'
             }
           }
         }
