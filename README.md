@@ -192,7 +192,7 @@ To run tests, run the following command:
 ```
 
 <u>**For Backend**</u>
-
+> To run the test successfully please upgrade version 3.2.2 and above
 ```sh
   rspec
 ```
